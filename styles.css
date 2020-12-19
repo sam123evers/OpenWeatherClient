@@ -1,3 +1,19 @@
 .open-weather {
    
 }
+
+.weather-strip-container {
+    height: 16em;
+    width: 32em;
+}
+
+#dlyWeatherContainer {
+    width: 40em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.daily-weather-cell {
+    border: 1px solid black;
+    border-radius: 10px;
+}
