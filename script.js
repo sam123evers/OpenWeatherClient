@@ -140,15 +140,19 @@ function handleDailyWeatherData(dlyWeatherObj) {
 
 function handleCurrentWeatherData(crtWeatherObj) {
     console.log("I'm Current!", crtWeatherObj);
-
+    // grab container from DOM and store in variable
     var main = document.getElementById("crtWeatherContainer");
 
+    // current weather description
     var description = crtWeatherObj.weather[0].description;
+    var descP = document.createElement("p");
+    descP.innerText = description;
 
-    var iconImage = document.createElement("img");
-    iconImage.src = iconBaseUrl + dp.weather[0].icon + ".png";
+    // current weather icon
+    var iconImg = document.createElement("img");
+    iconImg.src = iconBaseUrl + crtWeatherObj.weather[0].icon + ".png";
 
-    var descDiv = document.createElement("div");
+    
     
 
     var dowPlusTime = moment.unix(crtWeatherObj.dt).format('dddd, h:mm:ss a');
@@ -156,6 +160,8 @@ function handleCurrentWeatherData(crtWeatherObj) {
     timeP.innerText = dowPlusTime;
 
     main.append(timeP);
+    main.append(iconImg)
+    main.append(descP);
 }
 
 navigator.geolocation.getCurrentPosition(onPositionFound, onPositionNotFound);
