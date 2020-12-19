@@ -123,7 +123,6 @@ function handleDailyWeatherData(dlyWeatherObj) {
         dowP.innerText = dayOfWeek;
 
 
-        
         outer.append(dowP);
         outer.append(iconImage);
         outer.append(tempContainer);
@@ -132,8 +131,8 @@ function handleDailyWeatherData(dlyWeatherObj) {
 
         //console.log(dp.temp.max);
         //console.log(dp.temp.min);
-        console.log(dp.weather[0].icon);
-        console.log(dp.weather[0].description);
+        //console.log(dp.weather[0].icon);
+        //console.log(dp.weather[0].description);
 
         main.append(outer);
     });
@@ -141,6 +140,22 @@ function handleDailyWeatherData(dlyWeatherObj) {
 
 function handleCurrentWeatherData(crtWeatherObj) {
     console.log("I'm Current!", crtWeatherObj);
+
+    var main = document.getElementById("crtWeatherContainer");
+
+    var description = crtWeatherObj.weather[0].description;
+
+    var iconImage = document.createElement("img");
+    iconImage.src = iconBaseUrl + dp.weather[0].icon + ".png";
+
+    var descDiv = document.createElement("div");
+    
+
+    var dowPlusTime = moment.unix(crtWeatherObj.dt).format('dddd, h:mm:ss a');
+    var timeP = document.createElement("p");
+    timeP.innerText = dowPlusTime;
+
+    main.append(timeP);
 }
 
 navigator.geolocation.getCurrentPosition(onPositionFound, onPositionNotFound);
