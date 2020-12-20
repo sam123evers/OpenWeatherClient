@@ -1,10 +1,31 @@
-.open-weather {
-   
+body {
+    display: flex;
 }
 
-.weather-strip-container {
-    height: 16em;
-    width: 32em;
+.open-weather {
+   
+
+
+}
+
+.main-weather-container {
+    border: 1px solid black;
+    border-radius: 1em;
+}
+
+#crtWeatherContainer{
+    border: 1px solid black;
+    border-radius: 1em;
+    width: 25%;
+}
+
+.results-based-container{
+    border: 1px solid black;
+    border-radius: 1em;
+}
+
+.upper {
+    display: flex;
 }
 
 #dlyWeatherContainer {
@@ -14,6 +35,15 @@
 }
 
 .daily-weather-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     border: 1px solid black;
     border-radius: 10px;
+}
+
+.temps-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
 }

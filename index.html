@@ -3,27 +3,40 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>OpenWeather Client</title>
+        <title>Open Weather Client</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
 
-        <h1 class="open-weather">Open Weather Client</h1>
+        <!-- <h1 class="open-weather">Open Weather API Client</h1> -->
+        <div class="main-weather-container">
+            <div class="upper">
+                <div id="crtWeatherContainer">
+                    <p style="display:inline-flex">Right now:<span id="descSpan"></span></p>
+                    <p style="display:inline-flex">tempurature:<span id="tempSpan"></span></p>
+                    <p style="display:inline-flex">wind speed:<span id="windSpan"></span></p>
+                    <p style="display:inline-flex">feels like:<span id="feelsSpan"></span></p>
+                    <!--dynamically rendered content-->
+                    <!--******* DO NOT REMOVE ******-->
+                </div>
+    
+                <div class="results-based-container">
+                    Results based on the following data:
+                    <p>Current Day/Time:<span></span></p>
+                    <p>Location:<span></span></p>
+                </div>
+            </div>
 
-        <div id="crtWeatherContainer">
-            <!--dynamically rendered content-->
-            <!--******* DO NOT REMOVE ******-->
-        </div>
+            <div class=weather-strip-container>
+                <canvas id="hourlyCanvas"></canvas>
+            </div>
 
-        <div class=weather-strip-container>
-            <canvas id="hourlyCanvas"></canvas>
-        </div>
-
-        <div id="dlyWeatherContainer">
-            <!--dynamically rendered content-->
-            <!--******* DO NOT REMOVE ******-->
+            <div id="dlyWeatherContainer">
+                <!--dynamically rendered content-->
+                <!--******* DO NOT REMOVE ******-->
+            </div>
         </div>
         
         

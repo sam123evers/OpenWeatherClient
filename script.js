@@ -7,8 +7,6 @@ var iconBaseUrl = "http://openweathermap.org/img/wn/";
 // replace 10d with icon string and desired size after @;
 // eg: "http://openweathermap.org/img/wn/10d@2x.png";
 
-
-
 // define function that build the URL
 function assembleURL(base, lat, long, key){
 
@@ -20,7 +18,6 @@ function assembleURL(base, lat, long, key){
     urlWithParams.searchParams.append("appid", key);
 
     return urlWithParams.href;
-
 };
 
 function onPositionFound(positionObj) {
@@ -29,7 +26,7 @@ function onPositionFound(positionObj) {
     var lat = positionObj.coords.latitude;
     var long = positionObj.coords.longitude;
 
-    // make ajax call to open weather api
+    // call OpenWeather API using ajax
     $.ajax({
         url: assembleURL(apiUrlBase, lat, long, apikey),
         success: function(result){
@@ -54,6 +51,8 @@ function handleApiResponseData(weatherData) {
     handleDailyWeatherData(weatherData.daily);
 }   
 
+
+// BEGIN CHART
 function handleHourlyWeatherData(hrsDataObj) {
     var labels = [];
     var dataSet = [];
@@ -66,7 +65,6 @@ function handleHourlyWeatherData(hrsDataObj) {
         }
     });
 
-
     var ctx = document.getElementById('hourlyCanvas').getContext('2d');
 
 	var chart = new Chart(ctx, {
@@ -78,14 +76,18 @@ function handleHourlyWeatherData(hrsDataObj) {
 			labels: labels,
 			datasets: [{
 				label: 'Hourly Weather',
-				backgroundColor: '#FFE168',
-				borderColor: 'rgb(255, 99, 132)',
+				backgroundColor: '#fff89c',
+				borderColor: '#EBDB00',
 				data: dataSet
 			}]
 		},
 
 		// Hourly Chart Config below
-		options: {}
+		options: {
+            legend: {
+                display: false
+            }
+        }
 	});
 }
 
@@ -99,44 +101,41 @@ function handleDailyWeatherData(dlyWeatherObj) {
         // create four divs
         var outer = document.createElement("div");
         outer.className = "daily-weather-cell";
-        var dayContainer = document.createElement("div");
-        var iconContainer = document.createElement("div");
-        var tempContainer = document.createElement("div");
+        var tempsContainer = document.createElement("div");
+        tempsContainer.className = "temps-container";
+        //var dayContainer = document.createElement("div");
+        //var iconContainer = document.createElement("div");
 
         // get unix time and display as DOW
-        var dayOfWeek = moment.unix(dp.dt).format('dddd'); 
+        var dayOfWeek = moment.unix(dp.dt).format('dddd');
+        dayOfWeek = dayOfWeek.substr(0,3);
+        
+        // create p tag; put DOW inside
+        var dowP = document.createElement("p");
+        dowP.style.margin = 0;
+        dowP.innerText = dayOfWeek;
 
         // max and min temps
         // create p tags; put data inside
         var low = document.createElement("p");
         var high = document.createElement("p");
-        high.innerText = dp.temp.max;
-        low.innerText = dp.temp.min;
-        tempContainer.append(high, low);
+        high.innerText = Math.round(dp.temp.max);
+        low.innerText = Math.round(dp.temp.min);
+        tempsContainer.append(high, low);
 
         // create image tag and assign its source to icon URL
         var iconImage = document.createElement("img");
-        iconImage.src = iconBaseUrl + dp.weather[0].icon + ".png";
-
-        // create p tag; put DOW inside
-        var dowP = document.createElement("p");
-        dowP.innerText = dayOfWeek;
-
+        iconImage.style.width = "5em";
+        iconImage.src = iconBaseUrl + dp.weather[0].icon + "@2x.png";
 
         outer.append(dowP);
         outer.append(iconImage);
-        outer.append(tempContainer);
-
-        
-
-        //console.log(dp.temp.max);
-        //console.log(dp.temp.min);
-        //console.log(dp.weather[0].icon);
-        //console.log(dp.weather[0].description);
+        outer.append(tempsContainer);
 
         main.append(outer);
     });
 };
+// END CHART
 
 function handleCurrentWeatherData(crtWeatherObj) {
     console.log("I'm Current!", crtWeatherObj);
@@ -145,23 +144,35 @@ function handleCurrentWeatherData(crtWeatherObj) {
 
     // current weather description
     var description = crtWeatherObj.weather[0].description;
-    var descP = document.createElement("p");
+    var descP = document.getElementById("descSpan");
     descP.innerText = description;
+
+    var feels = Math.round(crtWeatherObj.feels_like);
+    var feelsP = document.getElementById("feelsSpan");
+    feelsP.innerText = feels + "°";
+
+    var windSpeed = crtWeatherObj.wind_speed;
+    var windP = document.getElementById("windSpan");
+    windP.innerText = windSpeed + "mph";
+
+    var temp = Math.round(crtWeatherObj.temp);
+    var tempP = document.getElementById("tempSpan");
+    tempP.innerText = temp + "°";
 
     // current weather icon
     var iconImg = document.createElement("img");
     iconImg.src = iconBaseUrl + crtWeatherObj.weather[0].icon + ".png";
 
-    
-    
-
     var dowPlusTime = moment.unix(crtWeatherObj.dt).format('dddd, h:mm:ss a');
     var timeP = document.createElement("p");
     timeP.innerText = dowPlusTime;
 
-    main.append(timeP);
-    main.append(iconImg)
-    main.append(descP);
+    // main.append(timeP);
+    // main.append(iconImg);
+    // main.append(descP);
+    // main.append(tempP);
+    // main.append(windP);
+    // main.append(feelsP);
 }
 
 navigator.geolocation.getCurrentPosition(onPositionFound, onPositionNotFound);
