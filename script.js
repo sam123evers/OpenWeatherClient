@@ -20,6 +20,11 @@ function assembleURL(base, lat, long, key){
     return urlWithParams.href;
 };
 
+function setLatAndLong(lat, long) {
+    document.getElementById("latSpan").innerText = lat;
+    document.getElementById("longSpan").innerText = long;
+}
+
 function onPositionFound(positionObj) {
 
     // assign co-ordinates from browser position
@@ -31,6 +36,7 @@ function onPositionFound(positionObj) {
         url: assembleURL(apiUrlBase, lat, long, apikey),
         success: function(result){
             handleApiResponseData(result);
+            setLatAndLong(lat, long);
         },
         error: function(err) {
             alert(err);
@@ -159,20 +165,16 @@ function handleCurrentWeatherData(crtWeatherObj) {
     var tempP = document.getElementById("tempSpan");
     tempP.innerText = temp + "°";
 
-    // current weather icon
-    var iconImg = document.createElement("img");
-    iconImg.src = iconBaseUrl + crtWeatherObj.weather[0].icon + ".png";
+    var cTime = moment.unix(crtWeatherObj.dt).format('dddd, MMMM Do YYYY, h:mm:ss a');
+    var cTimeSpan = document.getElementById("crntTimeSpan");
+    cTimeSpan.innerText = cTime;
+    // weather icon
+    // var iconImg = document.createElement("img");
+    // iconImg.src = iconBaseUrl + crtWeatherObj.weather[0].icon + ".png";
 
     var dowPlusTime = moment.unix(crtWeatherObj.dt).format('dddd, h:mm:ss a');
     var timeP = document.createElement("p");
     timeP.innerText = dowPlusTime;
-
-    // main.append(timeP);
-    // main.append(iconImg);
-    // main.append(descP);
-    // main.append(tempP);
-    // main.append(windP);
-    // main.append(feelsP);
 }
 
 navigator.geolocation.getCurrentPosition(onPositionFound, onPositionNotFound);
