@@ -14,36 +14,37 @@
         <div class="main-weather-container">
             <div class="upper">
                 <div id="crtWeatherContainer">
-                    <p style="display:inline-flex">Right now:<span id="descSpan"></span></p>
-                    <p style="display:inline-flex">tempurature:<span id="tempSpan"></span></p>
-                    <p style="display:inline-flex">wind speed:<span id="windSpan"></span></p>
-                    <p style="display:inline-flex">feels like:<span id="feelsSpan"></span></p>
-                    <!--dynamically rendered content-->
-                    <!--******* DO NOT REMOVE ******-->
+                    <div class="current-stats-container">
+                        <p class="current-stats">Right now:&nbsp;<span id="descSpan"></span></p>
+                        <p class="current-stats">Tempurature:&nbsp;<span id="tempSpan"></span></p>
+                        <p class="current-stats">Windspeed:&nbsp;<span id="windSpan"></span></p>
+                        <p class="current-stats">Feels like:&nbsp;<span id="feelsSpan"></span></p>
+                    </div>
+                </div>
+                <div class="open-weather">
+                    <h3>OPEN <br/>WEATHER<br/> CLIENT</h3>
                 </div>
     
                 <div class="results-based-container">
                     <!-- Results based on: -->
-                    <p><span id="crntTimeSpan"></span></p>
-                    <div>
-                        <!-- At: -->
-                        <p>Latitude:<span id="latSpan"></span></p>
-                        <p>Longitude:<span id="longSpan"></span></p>
-                    </div>
+                    <p class="resultP"><span id="crntTimeSpan"></span></p>
+                    <p class="resultP">Latitude:&nbsp;<span id="latSpan"></span></p>
+                    <p class="resultP">Longitude:&nbsp;<span id="longSpan"></span></p>
+                    
                     
                 </div>
             </div>
-
+            <h4>HOURLY WEATHER</h4>
             <div class=weather-strip-container>
                 <canvas id="hourlyCanvas"></canvas>
             </div>
 
+            <h4>DAILY WEATHER</h4>
             <div id="dlyWeatherContainer">
                 <!--dynamically rendered content-->
                 <!--******* DO NOT REMOVE ******-->
             </div>
         </div>
-        
         
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>

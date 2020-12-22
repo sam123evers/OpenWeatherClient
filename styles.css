@@ -3,33 +3,52 @@ body {
 }
 
 .open-weather {
-   
+    border: 1px solid black;
+    border-radius: 1em;
+}
 
+.current-stats {
+    display: inline-flex;
+    margin: 0;
+}
 
+.resultP {
+    margin: 0;
+}
+
+.weather-strip-container {
+    position: relative;
+    /* width: 100%; */
 }
 
 .main-weather-container {
     border: 1px solid black;
     border-radius: 1em;
+    width: 50%;
+    margin: 0 auto;
 }
 
 #crtWeatherContainer{
+    display: flex;
     border: 1px solid black;
     border-radius: 1em;
-    width: 25%;
+    width: 15em;
+    padding: 1em;
 }
 
 .results-based-container{
     border: 1px solid black;
     border-radius: 1em;
+    padding: 1em;
 }
 
 .upper {
     display: flex;
+    justify-content: space-between;
 }
 
 #dlyWeatherContainer {
-    width: 40em;
+    width: 100%;
     display: flex;
     justify-content: space-between;
 }

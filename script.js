@@ -90,9 +90,33 @@ function handleHourlyWeatherData(hrsDataObj) {
 
 		// Hourly Chart Config below
 		options: {
+            maintainAspectRatio: false,
             legend: {
                 display: false
+            },
+            scales: {
+                xAxes: [{
+                    gridLines: {
+                        display:false
+                    }
+                }],
+                yAxes: [{
+                    gridLines: {
+                        display:false
+                    },
+                    ticks: {
+                        suggestedMin: 30,
+                        suggestedMax: 100
+                    }   
+                }]
             }
+            // ,
+            // layout: {
+            //     padding: {
+            //         top: 75,
+            //         bottom: 75
+            //     }
+            // }
         }
 	});
 }
@@ -109,8 +133,6 @@ function handleDailyWeatherData(dlyWeatherObj) {
         outer.className = "daily-weather-cell";
         var tempsContainer = document.createElement("div");
         tempsContainer.className = "temps-container";
-        //var dayContainer = document.createElement("div");
-        //var iconContainer = document.createElement("div");
 
         // get unix time and display as DOW
         var dayOfWeek = moment.unix(dp.dt).format('dddd');
@@ -158,6 +180,7 @@ function handleCurrentWeatherData(crtWeatherObj) {
     feelsP.innerText = feels + "°";
 
     var windSpeed = crtWeatherObj.wind_speed;
+    console.log(typeof(windSpeed));
     var windP = document.getElementById("windSpan");
     windP.innerText = windSpeed + "mph";
 
@@ -168,9 +191,11 @@ function handleCurrentWeatherData(crtWeatherObj) {
     var cTime = moment.unix(crtWeatherObj.dt).format('dddd, MMMM Do YYYY, h:mm:ss a');
     var cTimeSpan = document.getElementById("crntTimeSpan");
     cTimeSpan.innerText = cTime;
+
     // weather icon
-    // var iconImg = document.createElement("img");
-    // iconImg.src = iconBaseUrl + crtWeatherObj.weather[0].icon + ".png";
+    var iconImg = document.createElement("img");
+    iconImg.src = iconBaseUrl + crtWeatherObj.weather[0].icon + "@2x.png";
+    main.append(iconImg);
 
     var dowPlusTime = moment.unix(crtWeatherObj.dt).format('dddd, h:mm:ss a');
     var timeP = document.createElement("p");
