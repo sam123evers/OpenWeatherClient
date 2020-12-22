@@ -188,7 +188,7 @@ function handleCurrentWeatherData(crtWeatherObj) {
     var tempP = document.getElementById("tempSpan");
     tempP.innerText = temp + "°";
 
-    var cTime = moment.unix(crtWeatherObj.dt).format('dddd, MMMM Do YYYY, h:mm:ss a');
+    var cTime = moment.unix(crtWeatherObj.dt).format('dddd, MMMM Do YYYY, h:mm a');
     var cTimeSpan = document.getElementById("crntTimeSpan");
     cTimeSpan.innerText = cTime;
 

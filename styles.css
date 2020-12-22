@@ -24,7 +24,7 @@ body {
 .main-weather-container {
     border: 1px solid black;
     border-radius: 1em;
-    width: 50%;
+    width: 45em;
     margin: 0 auto;
 }
 
@@ -32,7 +32,7 @@ body {
     display: flex;
     border: 1px solid black;
     border-radius: 1em;
-    width: 15em;
+    width: 18em;
     padding: 1em;
 }
 

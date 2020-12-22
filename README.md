@@ -1,10 +1,8 @@
 # OpenWeatherClient
-
 Basic html weather app consumes an Open Weather API.
 
 ## Technologies Used
 HTML, CSS, Javascript
-
 Moment.js, Charts.js, and jQuery all delivered from https://cdnjs.com/
 
 ## Usage
