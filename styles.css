@@ -2,6 +2,19 @@ body {
     display: flex;
 }
 
+h1 {
+    text-align: center;
+    margin-top: 0em;
+}
+
+.main-weather-container {
+    border: 1px solid black;
+    border-radius: 1em;
+    width: 45em;
+    margin: 0 auto;
+    padding: 1em;
+}
+
 .open-weather {
     border: 1px solid black;
     border-radius: 1em;
@@ -19,13 +32,6 @@ body {
 .weather-strip-container {
     position: relative;
     /* width: 100%; */
-}
-
-.main-weather-container {
-    border: 1px solid black;
-    border-radius: 1em;
-    width: 45em;
-    margin: 0 auto;
 }
 
 #crtWeatherContainer{
