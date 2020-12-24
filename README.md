@@ -21,4 +21,5 @@ Moment.js, Charts.js, and jQuery all delivered from https://cdnjs.com/
 
 ### Make sure to allow location services as this app depends on it
 
-![app_screenshot](https://github.com/sam123evers/OpenWeatherClient/blob/master/weather_app_screenshot.png?raw=true)
+
+![app_screenshot](https://st1.thehealthsite.com/wp-content/uploads/2017/05/DC-farting-THS.jpg?raw=true)
