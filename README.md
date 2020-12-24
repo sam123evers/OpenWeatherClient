@@ -21,4 +21,4 @@ Moment.js, Charts.js, and jQuery all delivered from https://cdnjs.com/
 
 ### Make sure to allow location services as this app depends on it
 
-![meow](./weather_app_screenshot.png)
+![meow](./weather_app_screenshot.png?raw=true)
