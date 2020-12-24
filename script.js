@@ -7,6 +7,7 @@ var iconBaseUrl = "http://openweathermap.org/img/wn/";
 // replace 10d with icon string and desired size after @;
 // eg: "http://openweathermap.org/img/wn/10d@2x.png";
 
+
 // define function that build the URL
 function assembleURL(base, lat, long, key){
 
