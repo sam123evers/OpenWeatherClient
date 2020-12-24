@@ -21,9 +21,20 @@ function assembleURL(base, lat, long, key){
 };
 
 function setLatAndLong(lat, long) {
-    document.getElementById("latSpan").innerText = lat;
-    document.getElementById("longSpan").innerText = long;
+    document.getElementById("latSpan").innerText = lat.toString().substr(0,14);
+    document.getElementById("longSpan").innerText = long.toString().substr(0,14);
 }
+
+function showWeatherContent(dataLoaded){
+    if(dataLoaded) {
+        var loadingSpinner = document.getElementById("get-me");
+        var content = document.getElementById("get-me-show-me");
+        loadingSpinner.style.display = "none";
+        content.style.display = "flex";
+        content.style.flexDirection = "column";
+    }
+
+};
 
 function onPositionFound(positionObj) {
 
@@ -34,9 +45,14 @@ function onPositionFound(positionObj) {
     // call OpenWeather API using ajax
     $.ajax({
         url: assembleURL(apiUrlBase, lat, long, apikey),
-        success: function(result){
-            handleApiResponseData(result);
-            setLatAndLong(lat, long);
+        success: function(result, status){
+            if(status === "success") {
+                showWeatherContent(true);
+                handleApiResponseData(result);
+                setLatAndLong(lat, long);
+            }
+            
+            
         },
         error: function(err) {
             alert(err);
@@ -50,8 +66,6 @@ function onPositionNotFound() {
 
 
 function handleApiResponseData(weatherData) {
-    var minutely = weatherData.minutely;
-
     handleCurrentWeatherData(weatherData.current); 
     handleHourlyWeatherData(weatherData.hourly);
     handleDailyWeatherData(weatherData.daily);
@@ -110,19 +124,12 @@ function handleHourlyWeatherData(hrsDataObj) {
                     }   
                 }]
             }
-            // ,
-            // layout: {
-            //     padding: {
-            //         top: 75,
-            //         bottom: 75
-            //     }
-            // }
         }
 	});
 }
 
 function handleDailyWeatherData(dlyWeatherObj) {
-    console.log("I'm daily!", dlyWeatherObj);
+    // console.log("daily weather data--->", dlyWeatherObj);
 
     dlyWeatherObj.map((dp) => {
         // grab container from DOM; store in variable
@@ -166,7 +173,8 @@ function handleDailyWeatherData(dlyWeatherObj) {
 // END CHART
 
 function handleCurrentWeatherData(crtWeatherObj) {
-    console.log("I'm Current!", crtWeatherObj);
+    //console.log("current weather data--->", crtWeatherObj);
+
     // grab container from DOM and store in variable
     var main = document.getElementById("crtWeatherContainer");
 
@@ -195,6 +203,7 @@ function handleCurrentWeatherData(crtWeatherObj) {
     // weather icon
     var iconImg = document.createElement("img");
     iconImg.src = iconBaseUrl + crtWeatherObj.weather[0].icon + "@2x.png";
+    iconImg.id = "iconCrntWthr"; 
     main.append(iconImg);
 
     var dowPlusTime = moment.unix(crtWeatherObj.dt).format('dddd, h:mm:ss a');

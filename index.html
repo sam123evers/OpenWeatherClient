@@ -13,35 +13,47 @@
         
         <div class="main-weather-container">
             <h1>Open Weather Client</h1>
-            <div class="upper">
-                <div id="crtWeatherContainer">
-                    <div class="current-stats-container">
-                        <!-- we'll append data here with javascript/jQuery -->
-                        <p class="current-stats">Right now:&nbsp;<span id="descSpan"></span></p>
-                        <p class="current-stats">Tempurature:&nbsp;<span id="tempSpan"></span></p>
-                        <p class="current-stats">Windspeed:&nbsp;<span id="windSpan"></span></p>
-                        <p class="current-stats">Feels like:&nbsp;<span id="feelsSpan"></span></p>
+            <div class="loading-spinner-main" id="get-me">
+                <img src="./spinner-blue.gif" alt="I'm supposed to be a loading spinner...">
+            </div>
+            <div class="hidden-content" id="get-me-show-me">
+                <div class="upper">
+                    <div id="crtWeatherContainer">
+                        <div class="current-stats-container">
+                            <!-- we'll append data here with javascript/jQuery -->
+                            <div class="test-div">
+                                <p class="current-stats">Right Now&nbsp;<span class="crnt-data-span" id="descSpan"></span></p>
+                                <p class="current-stats">Temperature&nbsp;<span class="crnt-data-span" id="tempSpan"></span></p> 
+                            </div>
+                            <div class="test-div">
+                                <p class="current-stats">Windspeed&nbsp;<span class="crnt-data-span" id="windSpan"></span></p>
+                                <p class="current-stats">Feels like&nbsp;<span class="crnt-data-span" id="feelsSpan"></span></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="results-based-container">
+                        <!-- Results based on: -->
+                        <p class="resultP">Date<span class="crnt-data-span" id="crntTimeSpan"></span></p>
+                        <div class="test-div-right">
+                            <p class="resultP">Latitude&nbsp;<span class="crnt-data-span" id="latSpan"></span></p>
+                            <p class="resultP">Longitude&nbsp;<span class="crnt-data-span" id="longSpan"></span></p>
+                        </div>
+                        
+                        
+                        
                     </div>
                 </div>
-                
-                <div class="results-based-container">
-                    <!-- Results based on: -->
-                    <p class="resultP"><span id="crntTimeSpan"></span></p>
-                    <p class="resultP">Latitude:&nbsp;<span id="latSpan"></span></p>
-                    <p class="resultP">Longitude:&nbsp;<span id="longSpan"></span></p>
-                    
-                    
+                <h4>HOURLY WEATHER</h4>
+                <div class=weather-strip-container>
+                    <canvas id="hourlyCanvas"></canvas>
                 </div>
-            </div>
-            <h4>HOURLY WEATHER</h4>
-            <div class=weather-strip-container>
-                <canvas id="hourlyCanvas"></canvas>
-            </div>
-
-            <h4>DAILY WEATHER</h4>
-            <div id="dlyWeatherContainer">
-                <!--dynamically rendered content-->
-                <!--******* DO NOT REMOVE ******-->
+    
+                <h4>DAILY WEATHER</h4>
+                <div id="dlyWeatherContainer">
+                    <!--dynamically rendered content-->
+                    <!--....goes here; do not remove-->
+                </div>
             </div>
         </div>
         
