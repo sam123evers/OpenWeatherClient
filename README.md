@@ -22,4 +22,4 @@ Moment.js, Charts.js, and jQuery all delivered from https://cdnjs.com/
 ### Make sure to allow location services as this app depends on it
 
 
-![app_screenshot](https://ibb.co/xYZ7S3S?raw=true)
+![app_screenshot](https://ibb.co/xYZ7S3S)
